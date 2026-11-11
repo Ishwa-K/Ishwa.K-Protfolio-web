@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
-from supabase import create_client
+from email.message import EmailMessage
+import smtplib
 import os
 
 load_dotenv()
@@ -9,10 +10,8 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-
-supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+GMAIL_ADDRESS = os.getenv("GMAIL_ADDRESS")
+GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")
 
 
 @app.route("/")
@@ -33,14 +32,34 @@ def contact():
     message = data.get("message", "").strip()
 
     if not name or not email or not message:
-        return jsonify({"error": "Please fill all fields"}), 400
+        return jsonify({
+            "success": False,
+            "message": "Please fill all fields."
+        }), 400
 
     try:
-        supabase.table("contact_messages").insert({
-            "name": name,
-            "email": email,
-            "message": message
-        }).execute()
+        msg = EmailMessage()
+
+        msg["Subject"] = f"New Portfolio Message from {name}"
+        msg["From"] = GMAIL_ADDRESS
+        msg["To"] = GMAIL_ADDRESS
+        msg["Reply-To"] = email
+
+        msg.set_content(
+            f"""
+You have received a new message from your portfolio!
+
+Name: {name}
+Email: {email}
+
+Message:
+{message}
+"""
+        )
+
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login(GMAIL_ADDRESS, GMAIL_APP_PASSWORD)
+            server.send_message(msg)
 
         return jsonify({
             "success": True,
@@ -48,11 +67,11 @@ def contact():
         }), 200
 
     except Exception as e:
-        print("SUPABASE ERROR:", e)
+        print("EMAIL ERROR:", e)
 
         return jsonify({
             "success": False,
-            "message": "Something went wrong. Please try again."
+            "message": "Unable to send message. Please try again."
         }), 500
 
 
