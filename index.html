@@ -1,57 +1,94 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta name="description" content="Portfolio of Ishwa K, B.Tech Computer Science Engineering student specialising in AI and Machine Learning.">
-
   <title>Ishwa K | Student Portfolio</title>
 
   <link rel="stylesheet" href="style.css">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 
+  <style>
+    .contact-form {
+      width: 100%;
+      max-width: 520px;
+      padding: 24px;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    }
+
+    .contact-form h3 {
+      margin-top: 0;
+      margin-bottom: 18px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 14px;
+      padding: 13px 14px;
+      border: 1px solid #d7dce3;
+      border-radius: 8px;
+      font: inherit;
+    }
+
+    .contact-form textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .contact-form button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    #formStatus {
+      min-height: 1.5em;
+      font-weight: 600;
+    }
+
+    @media (max-width: 760px) {
+      .contact-form {
+        max-width: none;
+        box-sizing: border-box;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
   <header class="site-header">
-
     <nav class="nav container" aria-label="Main navigation">
-
       <a class="brand" href="#home">IK<span>.</span></a>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <button class="menu-toggle" id="menuToggle"
+        aria-label="Open navigation" aria-expanded="false">☰</button>
 
       <div class="nav-links" id="navLinks">
-
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
         <a href="#education">Education</a>
         <a href="#contact" class="nav-contact">Contact</a>
-
       </div>
-
     </nav>
-
   </header>
-
 
   <main>
 
     <!-- HOME SECTION -->
-
     <section class="hero container" id="home">
 
       <div class="hero-copy">
-
         <p class="eyebrow">STUDENT PORTFOLIO</p>
 
         <h1>Hello, I'm<br><span>Ishwa K.</span></h1>
@@ -65,73 +102,48 @@
         </p>
 
         <div class="hero-actions">
-
           <a class="btn primary" href="#projects">Explore my work</a>
-
           <a class="btn secondary" href="#contact">Get in touch</a>
-
         </div>
 
         <div class="quick-links">
-
           <a href="https://www.linkedin.com/in/ishwa1012/" target="_blank" rel="noopener">LinkedIn ↗</a>
-
           <a href="https://github.com/Ishwa-K" target="_blank" rel="noopener">GitHub ↗</a>
-
           <a href="mailto:ishwa.kkip@gmail.com">Email ↗</a>
-
         </div>
-
       </div>
 
-
       <div class="hero-photo-wrap">
-
         <div class="photo-ring">
-
-          <img src="assets/ishwa-profile.jpg" alt="Portrait of Ishwa K" class="profile-photo">
-
+          <img src="assets/ishwa-profile.jpg"
+            alt="Portrait of Ishwa K" class="profile-photo">
         </div>
-
         <p class="photo-caption">Curious mind. Continuous learner.</p>
-
       </div>
 
     </section>
 
-
     <!-- ABOUT SECTION -->
-
     <section class="section soft-section" id="about">
-
       <div class="container narrow">
-
         <p class="eyebrow">01 / ABOUT</p>
-
         <h2 class="section-title">A little about me</h2>
 
         <p class="section-text">
           I am pursuing a B.Tech in Computer Science Engineering
           with a specialisation in Artificial Intelligence and
           Machine Learning at Jain (Deemed-to-be-University), Bangalore.
-
           I am building my foundations in programming and exploring
           how AI can solve real-world problems. My current focus is
           strengthening my technical skills through coursework,
           practice and projects.
         </p>
-
       </div>
-
     </section>
 
-
     <!-- SKILLS SECTION -->
-
     <section class="section container" id="skills">
-
       <p class="eyebrow">02 / SKILLS</p>
-
       <h2 class="section-title">What I'm learning</h2>
 
       <div class="skill-grid">
@@ -161,53 +173,36 @@
         </article>
 
       </div>
-
     </section>
 
-
     <!-- PROJECTS SECTION -->
-
     <section class="section soft-section" id="projects">
-
       <div class="container">
-
         <p class="eyebrow">03 / PROJECTS</p>
-
         <h2 class="section-title">Things I've worked on</h2>
 
         <div class="project-grid">
 
           <article class="project-card">
-
             <p class="project-type">HEALTHCARE · IN DEVELOPMENT</p>
-
             <h3>MediTrack</h3>
-
             <p>
               A smart medicine and health monitoring system designed
               to help patients view medicine schedules and health
               records, with doctor and patient roles.
             </p>
-
             <p class="tags">React · TypeScript · Web APIs</p>
-
           </article>
 
-
           <article class="project-card">
-
             <p class="project-type">PYTHON · BEGINNER PROJECT</p>
-
             <h3>Word Frequency Counter</h3>
-
             <p>
               A Python program that counts how often each word appears
               in a paragraph and identifies the most repeated word
               or words.
             </p>
-
             <p class="tags">Python · Strings · Dictionaries</p>
-
           </article>
 
         </div>
@@ -216,20 +211,13 @@
           Project descriptions should reflect your own contribution.
           Add repository links when your code is ready to share.
         </p>
-
       </div>
-
     </section>
 
-
-    <!-- INTERNSHIP EXPERIENCE SECTION -->
-
+    <!-- INTERNSHIP EXPERIENCE -->
     <section class="section soft-section" id="experience">
-
       <div class="container">
-
         <p class="eyebrow">04 / EXPERIENCE</p>
-
         <h2 class="section-title">Internship experience</h2>
 
         <article class="project-card" style="max-width: 850px;">
@@ -252,23 +240,15 @@
             organizations.
           </p>
 
-
           <h4>Tasks and Responsibilities</h4>
 
           <ul>
-
             <li>Researched and collected information about 10 Indian NGOs.</li>
-
             <li>Prepared a report on how AI can improve education for underserved students.</li>
-
             <li>Compiled and organized volunteer opportunities.</li>
-
             <li>Explored AI-powered ideas to help NGOs grow and improve their social impact.</li>
-
             <li>Prepared research reports and organized data using Excel.</li>
-
           </ul>
-
 
           <h4>Skills Gained</h4>
 
@@ -278,76 +258,50 @@
             Report Preparation · Problem-Solving
           </p>
 
-
           <p>
             <strong>Achievement:</strong>
             Successfully completed the internship and received
             an Internship Completion Certificate from InAmigos Foundation.
           </p>
 
-
           <a class="btn secondary"
-             href="assets/ishwa-internship-certificate.pdf"
-             target="_blank"
-             rel="noopener">
-
+            href="assets/ishwa-internship-certificate.pdf"
+            target="_blank" rel="noopener">
             View Internship Certificate ↗
-
           </a>
 
         </article>
-
       </div>
-
     </section>
 
-
     <!-- EDUCATION SECTION -->
-
     <section class="section container" id="education">
-
       <p class="eyebrow">05 / EDUCATION</p>
-
       <h2 class="section-title">My learning journey</h2>
 
       <div class="education-card">
-
         <div>
-
           <p class="project-type">CURRENTLY PURSUING</p>
-
           <h3>B.Tech – Computer Science Engineering</h3>
-
           <p>Specialisation: Artificial Intelligence &amp; Machine Learning</p>
-
-          <p>
-            Jain (Deemed-to-be-University), Bangalore · Second Year
-          </p>
-
+          <p>Jain (Deemed-to-be-University), Bangalore · Second Year</p>
         </div>
 
         <span class="edu-mark">JU</span>
-
       </div>
 
       <p class="small-note">
         Add certificates, workshops and achievements here when
         you have verified details to include.
       </p>
-
     </section>
 
-
     <!-- CONTACT SECTION -->
-
     <section class="section contact-section" id="contact">
-
       <div class="container contact-inner">
 
         <div>
-
           <p class="eyebrow">06 / CONTACT</p>
-
           <h2 class="section-title">Let's connect.</h2>
 
           <p class="section-text">
@@ -355,72 +309,155 @@
             projects or professional connections.
           </p>
 
+          <div class="contact-list">
+
+            <a href="mailto:ishwa.kkip@gmail.com">
+              <span>Email</span>
+              <strong>ishwa.kkip@gmail.com ↗</strong>
+            </a>
+
+            <a href="tel:+919363524263">
+              <span>Phone</span>
+              <strong>+91 9363524263 ↗</strong>
+            </a>
+
+            <a href="https://www.linkedin.com/in/ishwa1012/" target="_blank" rel="noopener">
+              <span>LinkedIn</span>
+              <strong>linkedin.com/in/ishwa1012 ↗</strong>
+            </a>
+
+            <a href="https://github.com/Ishwa-K" target="_blank" rel="noopener">
+              <span>GitHub</span>
+              <strong>github.com/Ishwa-K ↗</strong>
+            </a>
+
+          </div>
         </div>
 
+        <!-- FUNCTIONAL CONTACT FORM -->
+        <div class="contact-form">
+          <h3>Send me a message</h3>
 
-        <div class="contact-list">
+          <form id="contactForm">
 
-          <a href="mailto:ishwa.kkip@gmail.com">
+            <label for="name">Your Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+              maxlength="100"
+              required
+            >
 
-            <span>Email</span>
+            <label for="email">Your Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              maxlength="254"
+              required
+            >
 
-            <strong>ishwa.kkip@gmail.com ↗</strong>
+            <label for="message">Your Message</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Write your message"
+              maxlength="5000"
+              required
+            ></textarea>
 
-          </a>
+            <button
+              type="submit"
+              class="btn primary"
+              id="sendMessageButton"
+            >
+              Send Message
+            </button>
 
-
-          <a href="tel:+919363524263">
-
-            <span>Phone</span>
-
-            <strong>+91 9363524263 ↗</strong>
-
-          </a>
-
-
-          <a href="https://www.linkedin.com/in/ishwa1012/" target="_blank" rel="noopener">
-
-            <span>LinkedIn</span>
-
-            <strong>linkedin.com/in/ishwa1012 ↗</strong>
-
-          </a>
-
-
-          <a href="https://github.com/Ishwa-K" target="_blank" rel="noopener">
-
-            <span>GitHub</span>
-
-            <strong>github.com/Ishwa-K ↗</strong>
-
-          </a>
-
+<p id="formStatus" role="status" aria-live="polite"
+   style="color: green; font-weight: bold; margin-top: 15px; display: block;">
+</p>
+          </form>
         </div>
 
       </div>
-
     </section>
 
   </main>
 
-
   <!-- FOOTER -->
-
   <footer class="footer">
-
     <div class="container">
-
       <span>© <span id="year"></span> Ishwa K</span>
-
       <span>Built with curiosity and consistency.</span>
-
     </div>
-
   </footer>
-
 
   <script src="script.js"></script>
 
-</body>
+  <!-- PYTHON BACKEND CONNECTION -->
+  <script>
+    const contactForm = document.getElementById("contactForm");
+    const formStatus = document.getElementById("formStatus");
+    const sendMessageButton = document.getElementById("sendMessageButton");
 
+    // Local testing address. We will change this after backend deployment.
+const CONTACT_API_URL = "http://127.0.0.1:5000/api/contact";
+    contactForm.addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const formData = {
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        message: document.getElementById("message").value.trim()
+      };
+
+      if (!formData.name || !formData.email || !formData.message) {
+        formStatus.textContent = "Please fill in all fields.";
+        return;
+      }
+
+      sendMessageButton.disabled = true;
+      sendMessageButton.textContent = "Sending...";
+      formStatus.textContent = "";
+
+      try {
+        const response = await fetch(CONTACT_API_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            result.error || result.message || "Unable to send your message."
+          );
+        }
+
+        formStatus.textContent =
+          result.message || "Your message was sent successfully!";
+
+        contactForm.reset();
+
+      } catch (error) {
+        formStatus.textContent =
+          error.message === "Failed to fetch"
+            ? "Could not connect to the server. Make sure your Python backend is running."
+            : error.message;
+
+      } finally {
+        sendMessageButton.disabled = false;
+        sendMessageButton.textContent = "Send Message";
+      }
+    });
+  </script>
+
+</body>
 </html>
