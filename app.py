@@ -65,9 +65,10 @@ Message:
             "https://api.resend.com/emails",
             data=json.dumps(email_data).encode("utf-8"),
             headers={
-                "Authorization": f"Bearer {RESEND_API_KEY}",
-                "Content-Type": "application/json"
-            },
+    "Authorization": f"Bearer {RESEND_API_KEY}",
+    "Content-Type": "application/json",
+    "User-Agent": "Ishwa-Portfolio/1.0"
+},
             method="POST"
         )
 
