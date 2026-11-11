@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
-from email.message import EmailMessage
-import smtplib
+import urllib.request
+import urllib.error
+import json
 import os
 
 load_dotenv()
@@ -10,8 +11,8 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-GMAIL_ADDRESS = os.getenv("GMAIL_ADDRESS")
-GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")
+RESEND_API_KEY = os.getenv("RESEND_API_KEY")
+GMAIL_ADDRESS = "ishwa.kkip@gmail.com"
 
 
 @app.route("/")
@@ -25,7 +26,7 @@ def contact():
     data = request.get_json()
 
     if not data:
-        return jsonify({"error": "Invalid request"}), 400
+        return jsonify({"success": False, "message": "Invalid request"}), 400
 
     name = data.get("name", "").strip()
     email = data.get("email", "").strip()
@@ -37,17 +38,19 @@ def contact():
             "message": "Please fill all fields."
         }), 400
 
-    try:
-        msg = EmailMessage()
+    if not RESEND_API_KEY:
+        return jsonify({
+            "success": False,
+            "message": "Email service is not configured."
+        }), 500
 
-        msg["Subject"] = f"New Portfolio Message from {name}"
-        msg["From"] = GMAIL_ADDRESS
-        msg["To"] = GMAIL_ADDRESS
-        msg["Reply-To"] = email
-
-        msg.set_content(
-            f"""
-You have received a new message from your portfolio!
+    email_data = {
+        "from": "Portfolio <onboarding@resend.dev>",
+        "to": [GMAIL_ADDRESS],
+        "reply_to": email,
+        "subject": f"New Portfolio Message from {name}",
+        "text": f"""
+New message from your portfolio!
 
 Name: {name}
 Email: {email}
@@ -55,23 +58,39 @@ Email: {email}
 Message:
 {message}
 """
+    }
+
+    try:
+        req = urllib.request.Request(
+            "https://api.resend.com/emails",
+            data=json.dumps(email_data).encode("utf-8"),
+            headers={
+                "Authorization": f"Bearer {RESEND_API_KEY}",
+                "Content-Type": "application/json"
+            },
+            method="POST"
         )
 
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login(GMAIL_ADDRESS, GMAIL_APP_PASSWORD)
-            server.send_message(msg)
+        with urllib.request.urlopen(req, timeout=20) as response:
+            result = json.loads(response.read().decode("utf-8"))
 
         return jsonify({
             "success": True,
             "message": "Message sent successfully!"
         }), 200
 
-    except Exception as e:
-        print("EMAIL ERROR:", e)
-
+    except urllib.error.HTTPError as e:
+        print("RESEND ERROR:", e.code, e.read().decode("utf-8"))
         return jsonify({
             "success": False,
-            "message": "Unable to send message. Please try again."
+            "message": "Unable to send message."
+        }), 500
+
+    except Exception as e:
+        print("EMAIL ERROR:", str(e))
+        return jsonify({
+            "success": False,
+            "message": "Unable to send message."
         }), 500
 
 
